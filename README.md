@@ -8,12 +8,7 @@ Este é um aplicativo em Python que analisa textos de notícias sobre ocorrênci
 - [Funcionalidades](#funcionalidades)
 - [Pré-requisitos](#pré-requisitos)
 - [Instalação](#instalação)
-- [Como Usar](#como-usar)
 - [Exemplo de Uso](#exemplo-de-uso)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Contribuindo](#contribuindo)
-- [Licença](#licença)
-- [Contato](#contato)
 
 ## Descrição do Projeto
 
