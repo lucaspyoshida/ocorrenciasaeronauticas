@@ -44,7 +44,7 @@ class Probs(BaseModel):
     nao_ocorrencia: float = Field(description="Probabilidade de não ser uma ocorrência aeronáutica", ge=0, le=100)
     taxa_incerteza: float = Field(description="Taxa de incerteza na classificação", ge=0, le=100)
     loops: int = Field(description="Número de loops executados")
-    ocorrência: str = Field(description="Descreva apenas os fatos ocorridos, sem mencionar classificações ou análises. Foque em: o que aconteceu, quando, onde e como. Use entre 100 e 150 palavras para isso.")
+    ocorrencia: str = Field(description="Descreva apenas os fatos ocorridos, sem mencionar classificações ou análises. Foque em: o que aconteceu, quando, onde e como. Use entre 100 e 150 palavras para isso.")
     justificativa: str = Field(description="Explique usando entre 100 e 150 palavras como você chegou a essa classificação com base na NSCA 3-6")
 
     @model_validator(mode='after')
@@ -76,14 +76,16 @@ def gerar_resposta(ocorrencia):
         # resgpt = resgpt.choices[0].message.content
         # print(resgpt)
         # return
+        
         res = guard(
-        model="gpt-4o-mini",
-        messages=[{
-                "role": "user",
-                "content": prompt
-                #"content": f"{resgpt} ${{gr.complete_json_suffix_v2}}"
-        }]
+            model="gpt-4o-mini-2024-07-18",
+            messages=[{
+                    "role": "user",
+                    "content": prompt
+                    # "content": f"{resgpt} ${{gr.complete_json_suffix_v2}}"
+            }]
         )
+
         return f"{res.validated_output}"
 
 

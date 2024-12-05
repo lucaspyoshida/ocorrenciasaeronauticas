@@ -61,6 +61,16 @@ st.markdown("""
     .stButton button:hover {
         background: #005bb5;
     }
+    td {
+        text-align: center !important;
+    }
+    th {
+        text-align: center !important;
+        font-weight: bold !important;
+    }
+    tbody tr:first-child  > * {
+        color: #0066cc;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -119,14 +129,16 @@ if st.button("Calcular Probabilidades"):
                     df_prob = pd.DataFrame.from_dict(probabilidades, orient="index", columns=["Probabilidade (%)"])
                     df_prob = df_prob.sort_values(by="Probabilidade (%)", ascending=False)
                     
-                    # Formatando os números para remover zeros desnecessários
-                    df_prob["Probabilidade (%)"] = df_prob["Probabilidade (%)"].apply(lambda x: f"{x:g}")
+                    # Formatando os números para remover zeros desnecessários e adicionar o símbolo %
+                    df_prob["Probabilidade (%)"] = df_prob["Probabilidade (%)"].apply(lambda x: f"{x:g}%")
                     
-                    # Aplicando estilo para centralizar e colocar em negrito
+                    # Aplicando estilo para centralizar todas as células e colocar em negrito apenas a coluna de probabilidades
                     df_prob_styled = df_prob.style.set_properties(**{
                         'text-align': 'center'
                     }).set_table_styles([
-                        {'selector': 'td', 'props': [('text-align', 'center'), ('font-weight', 'bold')]}
+                        {'selector': 'th', 'props': [('text-align', 'center')]},
+                        {'selector': 'td', 'props': [('text-align', 'center')]},
+                        {'selector': 'td:nth-child(2)', 'props': [('font-weight', 'bold')]}
                     ])
                     
                     st.subheader("Resultados")
@@ -137,7 +149,7 @@ if st.button("Calcular Probabilidades"):
 
                     # Exibindo o resumo e justificativa
                     st.markdown("### Resumo da Ocorrência")
-                    st.write(valores['ocorrência'])
+                    st.write(valores['ocorrencia'])
                     
                     st.markdown("### Justificativa")
                     st.write(valores['justificativa'])
