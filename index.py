@@ -87,18 +87,19 @@ retornar as probabilidades de cada categoria de evento.
 """)
 
 # Lendo o conteúdo do arquivo
-try:
-    with open('ocorrencia.txt', 'r', encoding='utf-8') as arquivo:
-        texto_inicial = arquivo.read()
-except FileNotFoundError:
-    texto_inicial = ""
-
+# try:
+#     with open('ocorrencia.txt', 'r', encoding='utf-8') as arquivo:
+#         texto_inicial = arquivo.read()
+# except FileNotFoundError:
+#     texto_inicial = ""
+texto_inicial = ""
 # Campo de texto para entrada da ocorrência
 texto_entrada = st.text_area(
     "Cole ou digite o texto da ocorrência aérea:",
     value=texto_inicial,  # Definindo o valor inicial
     height=200,
-    placeholder="Exemplo: O avião apresentou problemas técnicos durante a decolagem, mas conseguiu retornar ao aeroporto sem incidentes."
+    placeholder="""Descreva aqui a ocorrência a ser analisada. 
+Como sugestão, busque notícias sobre algum evento aeronáutico, copie o texto e cole aqui."""
 )
 
 # Botão para calcular as probabilidades
